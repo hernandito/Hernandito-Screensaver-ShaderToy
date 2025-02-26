@@ -1,0 +1,278 @@
+# Kodi Media Center language file
+# Addon Name: Screensaver Shadertoy
+# Addon id: screensaver.shadertoy
+# Addon Provider: afedchin
+msgid ""
+msgstr ""
+"Project-Id-Version: XBMC Addons\n"
+"Report-Msgid-Bugs-To: translations@kodi.tv\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-02-15 08:13+0000\n"
+"Last-Translator: Alexey <signfinder@gmail.com>\n"
+"Language-Team: Russian <https://kodi.weblate.cloud/projects/kodi-add-ons-look-and-feel/screensaver-shadertoy/ru_ru/>\n"
+"Language: ru_ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.3\n"
+
+msgctxt "Addon Summary"
+msgid "Random screensavers from Shadertoy"
+msgstr "Случайные заставки от Shadertoy"
+
+msgctxt "Addon Description"
+msgid "Use the best shaders in the world with Shadertoy and add them if you want."
+msgstr "Используйте лучшие шейдеры в мире от Shadertoy и добавляйте их по своему усмотрению."
+
+msgctxt "#30000"
+msgid "ShaderToy"
+msgstr "ShaderToy"
+
+msgctxt "#30001"
+msgid "Ball"
+msgstr "Мяч"
+
+msgctxt "#30002"
+msgid "Ball Of Fire"
+msgstr "Огненный шар"
+
+msgctxt "#30003"
+msgid "Bleepy Blocks"
+msgstr "Пищящие блоки"
+
+msgctxt "#30004"
+msgid "Bob Scanline"
+msgstr "Bob Scanline"
+
+msgctxt "#30005"
+msgid "Blobs"
+msgstr "Сгустки"
+
+msgctxt "#30006"
+msgid "Blue Fire"
+msgstr "Синие пламя"
+
+msgctxt "#30007"
+msgid "Cellular"
+msgstr "Клеточный"
+
+msgctxt "#30008"
+msgid "Classic RGB Plasma"
+msgstr "Классическая RGB плазма"
+
+msgctxt "#30009"
+msgid "Coloured Circles"
+msgstr "Цветные круги"
+
+msgctxt "#30010"
+msgid "Dance Floor"
+msgstr "Танцпол"
+
+msgctxt "#30011"
+msgid "Dot Dot Dot"
+msgstr "Точка, точка, точка"
+
+msgctxt "#30012"
+msgid "Effect Ringblobs"
+msgstr "Эффект \"Ringblobs\""
+
+msgctxt "#30013"
+msgid "Ether"
+msgstr "Эфир"
+
+msgctxt "#30014"
+msgid "Fire"
+msgstr "Огонь"
+
+msgctxt "#30015"
+msgid "Flaring 1"
+msgstr "Пылающая 1"
+
+msgctxt "#30016"
+msgid "Flaring 2"
+msgstr "Пылающая 2"
+
+msgctxt "#30017"
+msgid "Flaring 3"
+msgstr "Пылающая 3"
+
+msgctxt "#30018"
+msgid "Flaring 4"
+msgstr "Пылающая 4"
+
+msgctxt "#30019"
+msgid "Flaring 5"
+msgstr "Пылающая 5"
+
+msgctxt "#30020"
+msgid "Fractal Tiling"
+msgstr "Фракталы с замощением"
+
+msgctxt "#30021"
+msgid "Infinite Fall"
+msgstr "Бесконечное падение"
+
+msgctxt "#30022"
+msgid "Input Time"
+msgstr "Текущее время"
+
+msgctxt "#30023"
+msgid "Interstellar"
+msgstr "Межзвёздный"
+
+msgctxt "#30024"
+msgid "Interweaving Sine Bands"
+msgstr "Переплетённые синусовые ленты"
+
+msgctxt "#30025"
+msgid "Julia Trap"
+msgstr "Ловушка Джулии"
+
+msgctxt "#30026"
+msgid "Layers Of Plasma"
+msgstr "Слои плазмы"
+
+msgctxt "#30027"
+msgid "Liquid Spectrum"
+msgstr "Текучий спектр"
+
+msgctxt "#30028"
+msgid "Noise Animation - Electric"
+msgstr "Анимация шума — \"Электрическая\""
+
+msgctxt "#30029"
+msgid "Noise Animation - Flow"
+msgstr "Анимация шума — \"Поток\""
+
+msgctxt "#30030"
+msgid "Noise Animation - Lava"
+msgstr "Анимация шума — \"Лава\""
+
+msgctxt "#30031"
+msgid "Noise Animation - Watery"
+msgstr "Анимация шума — \"Водная\""
+
+msgctxt "#30032"
+msgid "Overly Satisfying"
+msgstr "Очень приятная"
+
+msgctxt "#30033"
+msgid "Plasma Circles"
+msgstr "Круги плазмы"
+
+msgctxt "#30034"
+msgid "Plasma Triangles"
+msgstr "Треугольники плазмы"
+
+msgctxt "#30035"
+msgid "Plasma Matrix Spin"
+msgstr "Вращение плазменной матрицы"
+
+msgctxt "#30036"
+msgid "Pixellated Plasma"
+msgstr "Пикселизированная плазма"
+
+msgctxt "#30037"
+msgid "Silexars Creation"
+msgstr "Создана Silexars"
+
+msgctxt "#30038"
+msgid "Sky at Night"
+msgstr "Небо ночью"
+
+msgctxt "#30039"
+msgid "Sphere"
+msgstr "Сфера"
+
+msgctxt "#30040"
+msgid "Star Tunnel"
+msgstr "Звёздный туннель"
+
+msgctxt "#30041"
+msgid "Vector Field"
+msgstr "Векторное поле"
+
+msgctxt "#30042"
+msgid "Venus"
+msgstr "Венера"
+
+msgctxt "#30043"
+msgid "Watch It Burn"
+msgstr "Наблюдение за горением"
+
+msgctxt "#30044"
+msgid "Water Caustic"
+msgstr "Каустика воды"
+
+msgctxt "#30045"
+msgid "Wiggly (try mouse)"
+msgstr "Извивающейся (используйте мышку)"
+
+msgctxt "#30046"
+msgid "Worley Noise Waters"
+msgstr "Шум вод Уорли"
+
+msgctxt "#30100"
+msgid "Random"
+msgstr "Случайная"
+
+msgctxt "#30101"
+msgid "General"
+msgstr "Общие"
+
+msgctxt "#30102"
+msgid "Advanced"
+msgstr "Дополнительные"
+
+msgctxt "#30103"
+msgid "Use your own shader, e.g. from https://www.shadertoy.com"
+msgstr "Используйте ваш собственный шейдер, например, с сайта https://www.shadertoy.com"
+
+msgctxt "#30104"
+msgid "Selected shader code not found!"
+msgstr "Выбранный код шейдера не найден!"
+
+msgctxt "#30200"
+msgid "Choose one yourself"
+msgstr "Выберите сами"
+
+msgctxt "#30201"
+msgid "Shader"
+msgstr "Шейдер"
+
+msgctxt "#30202"
+msgid "iChannel 1"
+msgstr "iChannel 1"
+
+msgctxt "#30203"
+msgid "iChannel 2"
+msgstr "iChannel 2"
+
+msgctxt "#30204"
+msgid "iChannel 3"
+msgstr "iChannel 3"
+
+msgctxt "#30205"
+msgid "iChannel 4"
+msgstr "iChannel 4"
+
+msgctxt "#30211"
+msgid "Shader as *.glsl"
+msgstr "Шейдер в формате *.glsl"
+
+msgctxt "#30212"
+msgid "iChannel 1 as *.png"
+msgstr "iChannel 1 в формате *.png"
+
+msgctxt "#30213"
+msgid "iChannel 2 as *.png"
+msgstr "iChannel 2 в формате *.png"
+
+msgctxt "#30214"
+msgid "iChannel 3 as *.png"
+msgstr "iChannel 3 в формате *.png"
+
+msgctxt "#30215"
+msgid "iChannel 4 as *.png"
+msgstr "iChannel 4 в формате *.png"
