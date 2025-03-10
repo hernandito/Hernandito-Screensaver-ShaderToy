@@ -1,65 +1,93 @@
-#define M_2PI 6.28318530718
-vec2 polar(vec2 dPoint)
-{
-    return vec2(sqrt(dPoint.x * dPoint.x + dPoint.y * dPoint.y), atan(dPoint.y, dPoint.x));
+/*
+ A noise function mirrored and thresholded to maximize the value at the center of the screen
+ Combined with a second layer of noise to produce an ink on paper effect
+*/
+
+const vec3 inkColor = vec3(0.21, 0.21, 0.26);
+const vec3 paperColor = vec3(.78, 0.75, 0.7);
+
+const float speed = 0.0095;
+const float shadeContrast = 1.55;
+
+//3D simplex noise from: https://www.shadertoy.com/view/XsX3zB
+const float F3 =  0.3333333;
+const float G3 =  0.1666667;
+
+vec3 random3(vec3 c) {
+    float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
+    vec3 r;
+    r.z = fract(512.0*j);
+    j *= .125;
+    r.x = fract(512.0*j);
+    j *= .125;
+    r.y = fract(512.0*j);
+    return r-0.5;
 }
 
-float rand(vec2 co)
-{
-    return fract(sin(dot(co.xy, vec2(12.9898,78.233))) * 43758.5453);
+float simplex3d(vec3 p) {
+	 vec3 s = floor(p + dot(p, vec3(F3)));
+	 vec3 x = p - s + dot(s, vec3(G3));
+	 
+	 vec3 e = step(vec3(0.0), x - x.yzx);
+	 vec3 i1 = e*(1.0 - e.zxy);
+	 vec3 i2 = 1.0 - e.zxy*(1.0 - e);
+	 
+	 vec3 x1 = x - i1 + G3;
+	 vec3 x2 = x - i2 + 2.0*G3;
+	 vec3 x3 = x - 1.0 + 3.0*G3;
+	 
+	 vec4 w, d;
+	 
+	 w.x = dot(x, x);
+	 w.y = dot(x1, x1);
+	 w.z = dot(x2, x2);
+	 w.w = dot(x3, x3);
+	 
+	 w = max(0.6 - w, 0.0);
+	 
+	 d.x = dot(random3(s), x);
+	 d.y = dot(random3(s + i1), x1);
+	 d.z = dot(random3(s + i2), x2);
+	 d.w = dot(random3(s + 1.0), x3);
+	 
+	 w *= w;
+	 w *= w;
+	 d *= w;
+	 
+	 return dot(d, vec4(52.0));
 }
 
-vec2 decart(vec2 pPoint)
+float fbm(vec3 p)
 {
-    return vec2(pPoint.x * cos(pPoint.y), pPoint.x * sin(pPoint.y));
+	float f = 0.0;	
+	float frequency = 1.0;
+	float amplitude = 0.70;
+	for (int i = 0; i < 9; i++)
+	{
+		f += simplex3d(p * frequency) * amplitude;
+		amplitude *= 0.5;
+		frequency *= 2.0 + float(i) / 100.0;
+	}
+	return min(f, 1.0);
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-    vec2 screen = iResolution.xy;
-    vec2 center = screen / 2.0;
-    vec2 frag = fragCoord.xy - center;
-    vec2 fragPolar = polar(frag);
-    float lenCenter = length(center);
+    //Setup coordinates
+    vec2 uv = 1.0 - fragCoord.xy / iResolution.xy;
+    vec2 coord = 1.0 - uv * 2.0;
+    uv.x = 1.0 - abs(1.0 - uv.x * 2.0);
+    vec3 p = vec3(uv, iTime * speed);
     
-	const float bandPass = 4000.0;
-    const float angleDisp = M_2PI / (bandPass + 1.0);
+    //Sample a noise function
+    float blot = fbm(p * 3.0 + 8.0);
+    float shade = fbm(p * 2.0 + 16.0);
     
-    const float particlesCount = 900.0;
-    const float particleLifetime = 10.0;
-    const float particleMaxSize = 3.5;
-    float particleMaxSizeNorm = particleMaxSize / lenCenter;
+    //Threshold
+    blot = (blot + (sqrt(uv.x) - abs(0.5 - uv.y)));
+    blot = smoothstep(0.65, 0.71, blot) * max(1.0 - shade * shadeContrast, 0.0);
     
-    float globTime = iTime / particleLifetime;
-    float timeDelta = bandPass;
-    
-    const float polarRadiusClip = 0.05;
-    const float polarRadiusMax = 0.75;
-    float polarRadiusDelta = polarRadiusMax - polarRadiusClip; 
-    
-    float presence = 0.0;
-    vec2 pPoint;
-    
-    for (float i = 0.0; i < particlesCount; i += 1.0)
-    {
-        float phase = i / particlesCount;
-        
-        float localTime = globTime + timeDelta * (2.0 * phase - 1.0) + phase;
-        float particleTime = fract(localTime);
-        float spaceTransform = pow(particleTime, 8.0);
-        
-        pPoint.x = lenCenter * ((polarRadiusClip + polarRadiusDelta * phase) + spaceTransform);
-        
-        // +30 FPS :)
-        if (abs(pPoint.x - fragPolar.x) > particleMaxSize) continue;
-        
-        pPoint.y = floor(particleTime + bandPass * rand(vec2(floor(localTime), 1))) * angleDisp;
-        
-        vec2 dPoint = decart(pPoint);        
-        float particleSize = particleMaxSize * spaceTransform;
-        float localPresence = particleSize * (1.0 - clamp(length(dPoint - frag), 0.0, 1.0));
-        presence += localPresence;
-    }
-    presence = clamp(presence, 0.0, 1.0);
-    fragColor = vec4(presence, presence, presence, 1.0);
+    //Color
+    fragColor = vec4(mix(paperColor, inkColor, blot), 2.0);
+    fragColor.rgb *= 0.90 - pow(max(length(coord) - 0.5, 0.0), 3.0);
 }

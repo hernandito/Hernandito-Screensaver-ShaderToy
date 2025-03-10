@@ -1,5 +1,3 @@
-// Taken from https://www.shadertoy.com/view/4ttGWM
-
 // I started working a bit on the colors of Remix 2, ended up with something like this. :)
 // Remix 2 here: https://www.shadertoy.com/view/MtcGD7
 // Remix 1 here: https://www.shadertoy.com/view/llc3DM
@@ -17,7 +15,7 @@ float noise(vec2 n) {
 
 float fbm(vec2 n) {
     float total = 0.0, amplitude = 1.0;
-    for (int i = 0; i <5; i++) {
+    for (int i = 0; i <3; i++) {
         total += noise(n) * amplitude;
         n += n*1.7;
         amplitude *= 0.47;
@@ -32,13 +30,13 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     const vec3 c3 = vec3(0.2, 0.1, 0.7);
     const vec3 c4 = vec3(1.0, 0.9, 0.1);
     const vec3 c5 = vec3(0.1);
-    const vec3 c6 = vec3(0.9);
+    const vec3 c6 = vec3(0.19);
 
-    vec2 speed = vec2(0.1, 0.9);
+    vec2 speed = vec2(0.01, 0.01);
     float shift = 1.327+sin(iTime*2.0)/2.4;
     float alpha = 1.0;
     
-    float dist = 3.5-sin(iTime*0.4)/1.89;
+	float dist = 3.5-sin(iTime*0.4)/1.89;
     
     vec2 uv = fragCoord.xy / iResolution.xy;
     vec2 p = fragCoord.xy * dist / iResolution.xx;
@@ -54,10 +52,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     q = (q + qb - .4 * q2 -2.0*q3  + .6*q4)/3.8;
     vec2 r = vec2(fbm(p + q /2.0 + iTime * speed.x - p.x - p.y), fbm(p + q - iTime * speed.y));
     vec3 c = mix(c1, c2, fbm(p + r)) + mix(c3, c4, r.x) - mix(c5, c6, r.y);
-    vec3 color = vec3(1.0/(pow(c+1.61,vec3(4.0))) * cos(shift * fragCoord.y / iResolution.y));
+    vec3 color = vec3(.20/(pow(c+0.61,vec3(1.0))) * cos(shift * fragCoord.y / iResolution.y));
     
-    color=vec3(1.0,.2,.05)/(pow((r.y+r.y)* max(.0,p.y)+0.1, 4.0));;
-    color += (texture(iChannel0,uv*0.6+vec2(.5,.1)).xyz*0.01*pow((r.y+r.y)*.65,5.0)+0.055)*mix( vec3(.9,.4,.3),vec3(.7,.5,.2), uv.y);
-    color = color/(1.0+max(vec3(0),color));
+    color=vec3(.50,.1,.025)/(pow((r.y+r.y)* max(.0,p.y)+0.1, 1.0));;
+ 
+    color = color/(.20+max(vec3(0),color));
     fragColor = vec4(color.x, color.y, color.z, alpha);
 }

@@ -40,7 +40,7 @@ float GearDe(vec2 uv, Gear g)
 {
     // IQ's f/|Grad(f)| distance estimator:
     float f = GearFunction(uv, g);
-    vec2 eps = vec2(0.0001, .01);
+    vec2 eps = vec2(0.0001, 0);
     vec2 grad = vec2(
         GearFunction(uv + eps.xy, g) - GearFunction(uv - eps.xy, g),
         GearFunction(uv + eps.yx, g) - GearFunction(uv - eps.yx, g)) / (2.0*eps.x);
@@ -77,7 +77,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     float eps = 2.0/iResolution.y;
 
     // Scene parameters;
-	vec3 base = vec3(0.4, 0.42, 0.40);
+	vec3 base = vec3(0.65, 0.35, 0.0);
     const float count = 10.0;
 
     Gear outer = Gear(0.0, 0.8, 0.08, 4.0, 32.0, 0.9, base);
